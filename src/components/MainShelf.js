@@ -1,7 +1,8 @@
 import React from "react";
 import BookShelf from "./BookShelf";
+import Book from "./Book";
 
-function MainShelf({ books, changeShelf }) {
+function MainShelf({ books, changeShelf, book, shelfName, search, bookFound }) {
   //CURRENTLY READ
   const currentlyReading = books.filter(
     (book) => book.shelf === "currentlyReading"
@@ -19,7 +20,9 @@ function MainShelf({ books, changeShelf }) {
         shelfName="Currently Reading"
         books={currentlyReading}
         changeShelf={changeShelf}
-        //books={books}
+        book={book}
+        search={search}
+        bookFound={bookFound}
       />
       <BookShelf
         shelfName="Want To Read"

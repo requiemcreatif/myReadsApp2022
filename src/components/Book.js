@@ -10,12 +10,14 @@ function Book({ book, changeShelf }) {
           style={{
             width: 128,
             height: 193,
-            backgroundImage: `url(${book.imgUrl})`,
+            backgroundImage: `url(${book.imageLinks.thumbnail})`,
           }}
         ></div>
         <div className="book-shelf-changer">
           <select
-            defaultValue={book.shelf}
+            //value={book.shelf}
+            defaultValue={book.shelf ? book.shelf : "none"}
+            //default value is none on the
             onChange={(event) => changeShelf(book, event.target.value)}
           >
             <option value="none" disabled>
@@ -29,7 +31,7 @@ function Book({ book, changeShelf }) {
         </div>
       </div>
       <div className="book-title">{book.title}</div>
-      <div className="book-authors">{book.author}</div>
+      <div className="book-authors">{book.authors}</div>
     </div>
   );
 }
