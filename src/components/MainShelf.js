@@ -1,38 +1,35 @@
 import React from "react";
 import BookShelf from "./BookShelf";
-import Book from "./Book";
+//import Book from "./Book";
 
-function MainShelf({ books, changeShelf, book, shelfName, search, bookFound }) {
-  //CURRENTLY READ
-  const currentlyReading = books.filter(
-    (book) => book.shelf === "currentlyReading"
-  );
-  //console.log(currentlyReading);
-  //WANT TO READ
-  const wantToRead = books.filter((book) => book.shelf === "wantToRead");
+function MainShelf({ books, changeShelf }) {
 
-  //READ
-  const read = books.filter((book) => book.shelf === "read");
+  const MainShelf = (shelf) => {
+    const newShelf = books.filter((book) => book.shelf === shelf);
+    return newShelf;
+  };
 
   return (
-    <div>
+    <>
       <BookShelf
-        shelfName="Currently Reading"
-        books={currentlyReading}
+        books={MainShelf("currentlyReading")}
+        title={"Currently Reading"}
         changeShelf={changeShelf}
-        book={book}
-        search={search}
-        bookFound={bookFound}
+
       />
       <BookShelf
-        shelfName="Want To Read"
-        books={wantToRead}
+        books={MainShelf("wantToRead")}
+        title={"Want To Read"}
         changeShelf={changeShelf}
-        //books={books}
+
       />
 
-      <BookShelf shelfName="Read" books={read} changeShelf={changeShelf} />
-    </div>
+      <BookShelf
+        books={MainShelf("read")}
+        title={"Read"}
+        changeShelf={changeShelf}
+      />
+    </>
   );
 }
 

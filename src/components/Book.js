@@ -1,7 +1,24 @@
 import React from "react";
+import { useState, useEffect } from "react";
+import Select from "./Select";
 
 function Book({ book, changeShelf }) {
-  //console.log(book.shelf);
+  const { title, authors, imageLinks } = book;
+  const { thumbnail } = imageLinks;
+  const [shelf, setShelf] = useState(book.shelf);
+
+
+  const moveToShelf = (event) => {
+    setShelf(event);
+    changeShelf(book, event);
+  };
+
+  useEffect(() => {
+    book.shelf !== shelf && changeShelf(book, shelf);
+  }, [book, shelf, changeShelf]);
+
+
+
   return (
     <div className="book">
       <div className="book-top">
@@ -10,28 +27,15 @@ function Book({ book, changeShelf }) {
           style={{
             width: 128,
             height: 193,
-            backgroundImage: `url(${book.imageLinks.thumbnail})`,
+            backgroundImage: `url(${thumbnail})`,
           }}
         ></div>
         <div className="book-shelf-changer">
-          <select
-            //value={book.shelf}
-            defaultValue={book.shelf ? book.shelf : "none"}
-            //default value is none on the
-            onChange={(event) => changeShelf(book, event.target.value)}
-          >
-            <option value="none" disabled>
-              Move to...
-            </option>
-            <option value="currentlyReading">Currently Reading</option>
-            <option value="wantToRead">Want to Read</option>
-            <option value="read">Read</option>
-            <option value="none">None</option>
-          </select>
+        <Select moveToShelf={moveToShelf} shelf={shelf}/>
         </div>
       </div>
-      <div className="book-title">{book.title}</div>
-      <div className="book-authors">{book.authors}</div>
+      <div className="book-title">{title}</div>
+      <div className="book-authors">{authors}</div>
     </div>
   );
 }
