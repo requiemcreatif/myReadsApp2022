@@ -11,18 +11,18 @@ Also we can search for a book then add it to a specific shelf or remove it.
 ### List of Components
 The App.js has been splite into 6 different components.
 
-App.js
-MainShelf.js
-BookShelf.js
-Book.js
-Select.js
-Search.js
-TitleApp.js
+#### App.js
+#### MainShelf.js
+#### BookShelf.js
+#### Book.js
+#### Select.js
+#### Search.js
+#### TitleApp.js
 
 
 ### List of Hooks
-useState 
-useEffect
+#### useState 
+#### useEffect
 
 ### Styling
 Some styling changes have been done in the general index.css
