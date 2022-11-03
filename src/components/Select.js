@@ -6,7 +6,7 @@ function Select({shelf, moveToShelf}) {
         <select
             defaultValue={shelf}
             onChange={(event) => moveToShelf(event.target.value)}>
-            <option value="none" disabled>
+            <option disabled>
             Move to...
             </option>
             <option value="currentlyReading">Currently Reading</option>

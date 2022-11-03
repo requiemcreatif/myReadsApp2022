@@ -1,6 +1,5 @@
 import React from "react";
 import BookShelf from "./BookShelf";
-//import Book from "./Book";
 
 function MainShelf({ books, changeShelf }) {
 

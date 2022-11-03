@@ -1,14 +1,12 @@
 import React from "react";
 import Book from "./Book";
 
-
 function BookShelf({ books, title, changeShelf }) {
   return (
     <div className="bookshelf">
     <div className="shelf-title-container">
     <h2 className="bookshelf-title">{title}</h2>
-    </div>
-      
+    </div>  
       <div className="bookshelf-books">
         <ol className="books-grid">
           {books &&
@@ -22,7 +20,5 @@ function BookShelf({ books, title, changeShelf }) {
     </div>
   );
 }
-
-
 
 export default BookShelf;

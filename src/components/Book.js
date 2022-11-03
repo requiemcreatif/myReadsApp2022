@@ -3,10 +3,11 @@ import { useState, useEffect } from "react";
 import Select from "./Select";
 
 function Book({ book, changeShelf }) {
-  const { title, authors, imageLinks } = book;
-  const { thumbnail } = imageLinks;
-  const [shelf, setShelf] = useState(book.shelf);
+  const { title, authors, imageLinks,  } = book;
+  
 
+//console.log( book);
+  const [shelf, setShelf] = useState(book.shelf);
 
   const moveToShelf = (event) => {
     setShelf(event);
@@ -28,7 +29,12 @@ function Book({ book, changeShelf }) {
           style={{
             width: 128,
             height: 193,
-            backgroundImage: `url(${thumbnail})`,
+            //backgroundImage: `url(${imageLinks.thumbnail})`,
+            backgroundImage: imageLinks ? `url(${imageLinks.thumbnail})` : "",
+            
+
+
+
           }}
         ></div>
         <div className="book-shelf-changer">
@@ -36,7 +42,7 @@ function Book({ book, changeShelf }) {
         </div>
       </div>
       <div className="book-title">{title}</div>
-      <div className="book-authors">{authors}</div>
+      <div className="book-authors">{authors && authors.join(", ")}</div>
     </div>
   );
 }
