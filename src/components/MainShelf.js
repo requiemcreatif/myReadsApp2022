@@ -15,13 +15,12 @@ function MainShelf({ books, changeShelf }) {
         books={MainShelf("currentlyReading")}
         title={"Currently Reading"}
         changeShelf={changeShelf}
-
       />
+
       <BookShelf
         books={MainShelf("wantToRead")}
         title={"Want To Read"}
         changeShelf={changeShelf}
-
       />
 
       <BookShelf

@@ -14,6 +14,7 @@ function Book({ book, changeShelf }) {
   };
 
   useEffect(() => {
+    setShelf(book.shelf); 
     book.shelf !== shelf && changeShelf(book, shelf);
   }, [book, shelf, changeShelf]);
 

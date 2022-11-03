@@ -1,5 +1,4 @@
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import TitleApp from "./components/TitleApp";
 import MainShelf from "./components/MainShelf";
@@ -10,14 +9,11 @@ const App = () => {
   const [showSearchPage, setShowSearchpage] = useState(false);
   const [books, setBooks] = useState([]);
 
-
   //Get all books
-
   useEffect(() => {
     BooksAPI.getAll().then((books) => {
       setBooks(books);
     });
-    
     return () => {
       setBooks([]);
     };
@@ -26,14 +22,13 @@ const App = () => {
   //Change shelf
   async function changeShelf(book, shelf) { 
     await BooksAPI.update(book, shelf);
-    const getBook = { ...book, shelf };
+    const getBook = Object.assign(book, {shelf: shelf});
     setBooks((books) =>{
-      const newBooks = books.filter((item) => item.id !== book.id);
-      newBooks.push(getBook);
-      return newBooks;
+      const getNewBooks = books.filter((item) => item.id !== book.id);
+      getNewBooks.push(getBook);
+      return getNewBooks;
     });
   }
-  
 
   return (
     <div className="app">
@@ -55,7 +50,7 @@ const App = () => {
           </div>
 
           <div className="open-search">
-            <a onClick={() => setShowSearchpage(!showSearchPage)}>Add a book</a>
+            <button onClick={() => setShowSearchpage(!showSearchPage)}>Add a book</button>
           </div>
         </div>
       )}

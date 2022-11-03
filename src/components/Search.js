@@ -1,10 +1,11 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import * as BooksAPI from "../BooksAPI";
 import BookShelf from "./BookShelf";
 
 function Search({ changeShelf, setShowSearchpage, showSearchPage, books }) {
   const [search, setSearch] = useState("");
+  
   const newChange = (e) => {
     research(e.target.value);
   };
@@ -16,7 +17,7 @@ function Search({ changeShelf, setShowSearchpage, showSearchPage, books }) {
         data.map((book) => {
           const findBook = books.find((newbook) => newbook.id === book.id);
           if (findBook) {
-            const newBookFound =  Object.assign(book, {shelf: findBook.shelf});
+            const newBookFound = Object.assign(book, {shelf: findBook.shelf});
             return newBookFound;
           }
             return Object.assign(book, {shelf: "none"});
@@ -30,20 +31,20 @@ function Search({ changeShelf, setShowSearchpage, showSearchPage, books }) {
   return (
     <div className="search-books">
       <div className="search-books-bar">
-        <a
+        <button 
           className="close-search"
           onClick={() => {
             setShowSearchpage(!showSearchPage);
             research("");
           }}
         >
-          Close
-        </a>
+          {/* Close */}
+        </button>
         <div className="search-books-input-wrapper">
           <input
             type="text"
             placeholder="Search by title, author, or ISBN"
-            //value={search}
+            defaultValue={search}
             onChange={(event) => newChange(event)}
           />
           {/* {console.log(search)} */}
